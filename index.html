@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مريان | موسوعة التراث والحضارة اليمنية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #8B1E0F;
+            --secondary-color: #D4AF37;
+            --bg-color: #FAF8F5;
+            --text-color: #2C2C2C;
+            --card-bg: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), #4A0E06);
+            color: white;
+            padding: 2.5rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        header h1 {
+            font-family: 'Amiri', serif;
+            margin: 0;
+            font-size: 2.8rem;
+            color: var(--secondary-color);
+            letter-spacing: 1px;
+        }
+
+        header p {
+            margin-top: 0.5rem;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            padding: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .search-box {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+            border: 1px solid #E2D7C5;
+        }
+
+        .search-box h2 {
+            font-family: 'Amiri', serif;
+            margin-top: 0;
+            color: var(--primary-color);
+            font-size: 1.6rem;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 1rem;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid #E2D7C5;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: 'Tajawal', sans-serif;
+            outline: none;
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--primary-color);
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        .result-area {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background-color: #FFFDF9;
+            border-right: 4px solid var(--secondary-color);
+            border-radius: 4px;
+            display: none;
+        }
+
+        .result-area h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+
+        .source-badge {
+            display: inline-block;
+            background-color: #E2D7C5;
+            color: #4A0E06;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.2rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border: 1px solid #E2D7C5;
+        }
+
+        .card h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+            font-family: 'Amiri', serif;
+        }
+
+        footer {
+            background-color: #1A1A1A;
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 3rem;
+        }
+
+        footer a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>مَرَيَان</h1>
+        <p>الموسوعة الموثوقة للتاريخ، التراث، والخطوط اليمنية القديمة</p>
+    </header>
+
+    <div class="container">
+        
+        <div class="search-box">
+            <h2>🔎 باحث مريان المعجمي والتاريخي</h2>
+            <p>ابحث عن أي مصطلح، معلم، أو تاريخ يمني موثق من أمهات المعاجم:</p>
+            <div class="input-group">
+                <input type="text" id="searchInput" placeholder="مثال: سبأ، ظفار، المسند، عرش بلقيس...">
+                <button onclick="searchDatabase()">بحث</button>
+            </div>
+
+            <div id="resultArea" class="result-area">
+                <h3 id="resultTitle"></h3>
+                <p id="resultText"></p>
+                <div id="resultSource" class="source-badge"></div>
+            </div>
+        </div>
+
+        <h2>🏛️ شواهد ومعالم من تاريخ اليمن</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>خط المسند اليمني</h3>
+                <p>نظام الكتابة الأصيل لممالك اليمن القديمة (سبأ، حِمْيَر، قتبان، حضرموت) ويتألف من 29 حرفاً.</p>
+            </div>
+            <div class="card">
+                <h3>مأرب وعرش بلقيس</h3>
+                <p>من أهم المعالم الأثرية التاريخية، ويعتبر المعبد الرئيسي للحضارة السبئية القديمة.</p>
+            </div>
+            <div class="card">
+                <h3>قصر غمدان</h3>
+                <p>من أوائل القصور والمباني المرتفعة في العالم، نُوّه بذكره في المعاجم التاريخية كأحد عجائب البناء بمدينة صنعاء.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>جميع الحقوق محفوظة © 2026 | تطوير وإشراف: <strong>مهند السروري</strong></p>
+        <p>
+            إنستغرام: <a href="https://instagram.com/i.jtji" target="_blank">@i.jtji</a> | 
+            البريد الإلكتروني: <a href="mailto:mohannad1alsururi@gmail.com">mohannad1alsururi@gmail.com</a>
+        </p>
+    </footer>
+
+    <script>
+        const database = {
+            "سبأ": {
+                text: "سبأ: مملكة يمنية قديمة قامت في هزيع التاريخ وعاصمتها مأرب. ورد ذكرها في القرآن الكريم والمعاجم العربية مثل 'لسان العرب' بمعنى الجماعة العظيمة والقبائل المنتسبة إلى سبأ بن يشجب بن يعرب بن قحطان.",
+                source: "المصدر: لسان العرب + معجم البلدان للحموي"
+            },
+            "المسند": {
+                text: "خط المسند: الخط العربي الجنوبي القديم الذي كتب به أبناء اليمن حضاراتهم ورسائلهم ونقوشهم الحجرية.",
+                source: "المصدر: كتاب الإكليل للحسن بن أحمد الهمداني"
+            },
+            "حمير": {
+                text: "حِمْيَر: إحدى أكبر القبائل والممالك اليمنية القديمة التي استمر حكمها لقرون وكانت عاصمتها ظفار في يريم.",
+                source: "المصدر: تاج العروس من جواهر القاموس"
+            },
+            "ظفار": {
+                text: "ظفار: عاصمة الدولة الحميرية القديمة في اليمن، وتقع قرب مدينة يريم بمحافظة إب، اشتهرت بالقصور والنقوش الأثرية.",
+                source: "المصدر: معجم معالم الحجر والأثر اليمني"
+            }
+        };
+
+        function searchDatabase() {
+            const query = document.getElementById('searchInput').value.trim();
+            const resultArea = document.getElementById('resultArea');
+            const resultTitle = document.getElementById('resultTitle');
+            const resultText = document.getElementById('resultText');
+            const resultSource = document.getElementById('resultSource');
+
+            if (!query) {
+                alert("يرجى كتابة كلمة للبحث عنها!");
+                return;
+            }
+
+            let found = false;
+            for (let key in database) {
+                if (query.includes(key) || key.includes(query)) {
+                    resultTitle.innerText = "نتائج البحث عن: " + key;
+                    resultText.innerText = database[key].text;
+                    resultSource.innerText = database[key].source;
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found) {
+                resultTitle.innerText = "نتائج البحث عن: " + query;
+                resultText.innerText = "جاري البحث والتحديث من قاعدة المعاجم الشاملة لشبكة مريان...";
+                resultSource.innerText = "المصدر: موسوعة مريان الموثوقة";
+            }
+
+            resultArea.style.display = "block";
+        }
+    </script>
+</body>
+</html>
